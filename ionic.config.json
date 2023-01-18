@@ -1,0 +1,7 @@
+{
+  "name": "egon-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
