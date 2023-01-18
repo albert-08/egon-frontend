@@ -1,0 +1,13 @@
+{
+  "main": {
+    "main": "Main page",
+    "powered": "Powered by"
+  },
+  "login": {
+    "user": "Username",
+    "password": "Password",
+    "recovery": "Password recovery",
+    "register": "Sign up",
+    "login": "Log in"
+  }
+}

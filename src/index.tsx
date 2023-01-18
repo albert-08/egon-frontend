@@ -1,14 +1,38 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { I18nextProvider } from 'react-i18next';
+import i18next from 'i18next';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+
+import translation_es_mx from './translations/es_mx/translation.json';
+import translation_es_col from './translations/es_col/translation.json';
+import translation_en from './translations/en/translation.json';
+
+i18next.init({
+  interpolation: { escapeValue: false },
+  lng: 'es_mx',
+  resources: {
+    es_mx: {
+      translation: translation_es_mx 
+    },
+    es_col: {
+      translation: translation_es_col
+    },
+    en: {
+      translation: translation_en
+    }
+  }
+});
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <App />
+    <I18nextProvider i18n={i18next}>
+      <App />
+    </I18nextProvider>
   </React.StrictMode>
 );
 

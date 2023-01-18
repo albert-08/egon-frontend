@@ -1,0 +1,13 @@
+{
+  "main": {
+    "main": "Inicio",
+    "powered": "Desarrollado por"
+  },
+  "login": {
+    "user": "Usuario",
+    "password": "Contraseña",
+    "recovery": "Recuperar contraseña",
+    "register": "Registrar usuario",
+    "login": "Iniciar Sesión"
+  }
+}

@@ -1,0 +1,15 @@
+ion-slides {
+  height: 100%;
+}
+
+.logo-condominio {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
