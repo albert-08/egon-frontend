@@ -4,6 +4,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
+  IonContent,
   IonInput,
   IonItem,
   IonLabel,
@@ -14,7 +15,7 @@ import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [login, setLogin] = useState([]);
   const history = useHistory();
@@ -22,7 +23,7 @@ const Login: React.FC = () => {
   const loginUser = async() => {
     const url = 'http://127.0.0.1:4000/users/login';
     const user = {
-      username,
+      email,
       password
     }
     const response = await fetch(url, {
@@ -34,44 +35,46 @@ const Login: React.FC = () => {
     });
     const data = await response.json();
     setLogin(data);
-    history.push('/tab2');
   }
 
   if (login.length > 0) {
-    localStorage.setItem('user', JSON.stringify(login));
+    // localStorage.setItem('user', JSON.stringify(login));
+    history.push('/main');
   }
 
   return (
     <IonPage>
-      <IonCard>
-        <IonCardHeader>
-          <IonCardTitle>Login</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent>
-          <IonList>
-            <IonItem>
-              <IonLabel position='stacked'>Username</IonLabel>
-              <IonInput
-                placeholder='username'
-                onIonChange={(e: any) => setUsername(e.target.value)}
-              />
-            </IonItem>
-            <IonItem>
-              <IonLabel position='stacked'>Password</IonLabel>
-              <IonInput
-                type='password'
-                placeholder='password'
-                onIonChange={(e: any) => setPassword(e.target.value)}
-              />
-            </IonItem>
-          </IonList>
-        </IonCardContent>
-        <Link to="/recover">Recover password</Link>
-        <br />
-        <Link to="/register">Register</Link>
-        <br />
-        <IonButton onClick={loginUser}>Login</IonButton>
-      </IonCard>
+      <IonContent>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Login</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonList>
+              <IonItem>
+                <IonLabel position='stacked'>Email</IonLabel>
+                <IonInput
+                  placeholder='email'
+                  onIonChange={(e: any) => setEmail(e.target.value)}
+                />
+              </IonItem>
+              <IonItem>
+                <IonLabel position='stacked'>Password</IonLabel>
+                <IonInput
+                  type='password'
+                  placeholder='password'
+                  onIonChange={(e: any) => setPassword(e.target.value)}
+                />
+              </IonItem>
+            </IonList>
+          </IonCardContent>
+          <Link to="/recover">Recover password</Link>
+          <br />
+          <Link to="/register">Register</Link>
+          <br />
+          <IonButton onClick={loginUser}>Login</IonButton>
+        </IonCard>
+      </IonContent>
     </IonPage>
   );
 };

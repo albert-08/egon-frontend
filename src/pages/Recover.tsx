@@ -4,6 +4,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
+  IonContent,
   IonInput,
   IonItem,
   IonLabel,
@@ -18,32 +19,34 @@ const Recover: React.FC = () => {
 
   return (
     <IonPage>
-      <IonCard>
-        <IonCardHeader>
-          <IonCardTitle>Recover password</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent>
-          <IonList>
-            <IonItem>
-              <IonLabel position='stacked'>Email</IonLabel>
-              <IonInput
-                placeholder='email'
-                onIonChange={(e: any) => setEmail(e.target.value)}
-              />
-            </IonItem>
-          </IonList>
-        </IonCardContent>
-        <Link to="/">
-          <IonButton>
-            OK
-          </IonButton>
-        </Link>
-        <Link to="/login">
-          <IonButton>
-            Return
-          </IonButton>
-        </Link>
-      </IonCard>
+      <IonContent>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Recover password</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonList>
+              <IonItem>
+                <IonLabel position='stacked'>Email</IonLabel>
+                <IonInput
+                  placeholder='email'
+                  onIonChange={(e: any) => setEmail(e.target.value)}
+                />
+              </IonItem>
+            </IonList>
+          </IonCardContent>
+          <Link to="/">
+            <IonButton>
+              OK
+            </IonButton>
+          </Link>
+          <Link to="/login">
+            <IonButton>
+              Return
+            </IonButton>
+          </Link>
+        </IonCard>
+      </IonContent>
     </IonPage>
   );
 };
