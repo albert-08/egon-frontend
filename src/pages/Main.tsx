@@ -8,6 +8,7 @@ import {
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonInput,
   IonItem,
   IonLabel,
   IonList,
@@ -15,29 +16,37 @@ import {
   IonToolbar,
   useIonViewDidEnter
 } from '@ionic/react';
-import { useState } from 'react';
-import { User } from '../models/user.model';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Main: React.FC = (): any => {
+  const [state, setState] = useState([]);
 
-  // const [user, setUser] = useState<User[]>([]);
-  // const url = 'http://192.168.100.8:4000/users';
-  // const apiKey = '';
+  useEffect(() => {
+    getData();
+    getInfo();
+  }, []);
+  // const prediosData: any = localStorage.getItem('sec_conn_bd');
+  // const predios: any = JSON.parse(prediosData);
+  const url = 'http://127.0.0.1:4000/espacios/';
+  const urlInfo = 'http://127.0.0.1:4000/espacios/info';
 
-  // useIonViewDidEnter(async () => {
-    // const response = await fetch(url, {
-    //   headers: { 'x-API-KEY': apiKey}
-    // });
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // setPeople(data);
-    // const user: any = localStorage.getItem('user');
-    // const userData: any = JSON.parse(user);
-    // setUser(userData);
-  // });
-  const userData: any = localStorage.getItem('user');
-  const user: any = JSON.parse(userData);
-  return user.map ((u: any) => (
+  const getData = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    localStorage.setItem('sec_conn_bd', JSON.stringify(data));
+  };
+  const getInfo = async () => {
+    const response = await fetch(urlInfo);
+    const data = await response.json();
+    setState(data);
+  };
+  
+  const prediosData: any = localStorage.getItem('sec_conn_bd');
+  const predios: any = JSON.parse(prediosData);
+  console.log(`Local storage: ${JSON.stringify(predios)}`);
+
+  return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
@@ -50,53 +59,53 @@ const Main: React.FC = (): any => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+      <IonList>
+        <IonItem>
+          <IonLabel>Ingrese alias:</IonLabel>
+          <IonInput
+            placeholder="Espacio"
+            onIonChange={(event: any) => {
+              console.log(event.target.value);
+            }}
+          ></IonInput>
+          <IonButton
+            onClick={() => {
+              console.log(predios);
+            }}
+          >Add</IonButton>
+        </IonItem>
+      </IonList>
+        <IonButton>Nuevo Espacio</IonButton>
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>Espacios</IonCardTitle>
-            <IonCardSubtitle>{`${u.name} ${u.lastname} ${u.secondlastname} ${u.email}`}</IonCardSubtitle>
+            <IonCardSubtitle>Espacios agregados:</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
             <IonList>
-              <IonItem>
-                <IonAvatar>
-                  <img
-                    src="https://egonsolutionscloudtrailbucket.s3-us-west-2.amazonaws.com/Recursos/cs_28/urp_426.jpg"
-                    alt="mision-conca-logo"
-                  />
-                </IonAvatar>
-                <IonLabel>
-                  <p>Misión Conca</p>
-                </IonLabel>
-              </IonItem>
-              <IonItem>
-                <IonAvatar>
-                  <img
-                    src="https://egonsolutionscloudtrailbucket.s3-us-west-2.amazonaws.com/Recursos/cs_25/urp_16.png"
-                    alt="portal-san-felipe-logo"
-                  />
-                </IonAvatar>
-                <IonLabel>
-                  <p>Portal San Felipe</p>
-                </IonLabel>
-              </IonItem>
-              <IonItem>
-                <IonAvatar>
-                  <img
-                    src="https://egonsolutionscloudtrailbucket.s3-us-west-2.amazonaws.com/Recursos/cs_25/urp_16.png"
-                    alt="san-gil-clubs-logo"
-                  />
-                </IonAvatar>
-                <IonLabel>
-                  <p>San Gil Clubs</p>
-                </IonLabel>
-              </IonItem>
+              {
+                state.map ((p: any) => (
+                  <Link to="/">
+                    <IonItem>
+                      <IonAvatar>
+                        <img
+                          src={p.logo}
+                          alt={p.name}
+                        />
+                      </IonAvatar>
+                      <IonLabel>
+                        <p>{p.name}</p>
+                      </IonLabel>
+                    </IonItem>
+                  </Link>
+                ))
+              }
             </IonList>
           </IonCardContent>
-          <IonButton>Nuevo Espacio</IonButton>
         </IonCard>
       </IonContent>
     </IonPage>
-  ));
+  );
 };
 
 export default Main;

@@ -1,4 +1,5 @@
 import {
+  IonAlert,
   IonButton,
   IonCard,
   IonCardContent,
@@ -17,7 +18,8 @@ import { Link, useHistory } from 'react-router-dom';
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [login, setLogin] = useState([]);
+  // const [login, setLogin] = useState([]);
+  const [showAlert, setShowAlert] = useState(true);
   const history = useHistory();
 
   const loginUser = async() => {
@@ -34,12 +36,11 @@ const Login: React.FC = () => {
       }
     });
     const data = await response.json();
-    setLogin(data);
-  }
-
-  if (login.length > 0) {
-    // localStorage.setItem('user', JSON.stringify(login));
-    history.push('/main');
+    // setLogin(data);
+    if (data.length > 0) {
+      localStorage.setItem('sec_conn_bd', JSON.stringify(data));
+      history.push('/main');
+    }
   }
 
   return (
