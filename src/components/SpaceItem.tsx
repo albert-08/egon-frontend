@@ -8,7 +8,7 @@ interface ContainerProps {
 
 const SpaceItem: React.FC<ContainerProps> = ({space}) => {
   return (
-    <Link to="/home">  
+    <Link to={`/home/${space.alias}`}>  
       <IonItem>
         <IonAvatar slot='start'>
           <img
