@@ -1,12 +1,13 @@
-import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList } from '@ionic/react';
-import { Link } from 'react-router-dom';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList } from '@ionic/react';
+import { Space } from '../models/space.model';
+import SpaceItem from './SpaceItem';
 
 interface ContainerProps { }
 
-const AddedSpaces: React.FC<ContainerProps> = ({props}: any) => {
-  const clientsData: any = localStorage.getItem('sec_conn_bd');
-  const clients: any = JSON.parse(clientsData);
-
+const AddedSpaces: React.FC<ContainerProps> = () => {
+  const spacesData: any = localStorage.getItem('sec_conn_bd');
+  const spaces: any = JSON.parse(spacesData);
+  
   return (
     <IonCard>
       <IonCardHeader>
@@ -15,25 +16,7 @@ const AddedSpaces: React.FC<ContainerProps> = ({props}: any) => {
       </IonCardHeader>
       <IonCardContent>
         <IonList>
-          {
-            clients.map((client: any) => (
-              <div key={client.csiid}>
-                <Link to="/home">
-                  <IonItem>
-                    <IonAvatar>
-                      <img
-                        src='logo'
-                        alt='logo-name'
-                      />
-                    </IonAvatar>
-                    <IonLabel>
-                      <p>{client.alias}</p>
-                    </IonLabel>
-                  </IonItem>
-                </Link>
-              </div>
-            ))
-          }
+          { spaces.map((space: Space) => <SpaceItem key={space.csiid} space={space} />) }   
         </IonList>
       </IonCardContent>
     </IonCard>
