@@ -5,17 +5,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Main: React.FC = (): any => {
-  // useEffect(() => {
-  //   getData();
-  //   getInfo();
-  // }, []);
-  // // const prediosData: any = localStorage.getItem('sec_conn_bd');
-  // // const predios: any = JSON.parse(prediosData);
-    
-  // const prediosData: any = localStorage.getItem('sec_conn_bd');
-  // const predios: any = JSON.parse(prediosData);
-  // console.log(`Local storage: ${JSON.stringify(predios)}`);
-
   const getLocalStorage = localStorage.getItem('sec_conn_bd');
 
   return (
@@ -23,7 +12,7 @@ const Main: React.FC = (): any => {
       <Header />
         <IonContent>
           {
-            getLocalStorage 
+            getLocalStorage
               ? <AddedSpaces /> 
               : <AddNewSpace />
           }
