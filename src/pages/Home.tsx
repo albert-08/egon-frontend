@@ -12,6 +12,7 @@ import HomeLogo from '../components/HomeLogo';
 
 const Home: React.FC = () => {
   const [client, setClient] = useState<any>({});
+  const [slides, setSlides] = useState<any>([]);
   const params: any = useParams();
 
   const getClientData = async (db: string) => {
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
     });
     const data = await response.json();
     setClient(data);
+    setSlides(data.slides.split(', '));
   }
 
   useEffect(() => {
@@ -34,14 +36,14 @@ const Home: React.FC = () => {
     const db: string = database.db;
     getClientData(db);
   }, [])
-
+  
   return (
     <>
       <IonPage>
         <Header client={client}/> 
         <IonContent>
-          <HomeLogo />
-          <HomeSlides />
+          <HomeLogo client={client}/>
+          <HomeSlides slides={slides}/>
           <HomeDescription client={client}/>
         </IonContent>
       </IonPage>

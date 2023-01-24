@@ -1,15 +1,22 @@
 import { IonButton, IonButtons, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
 import { logIn } from 'ionicons/icons';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Client } from '../models/client.model';
+import AddNewSpaceButton from './AddNewSpaceButton';
 
 interface ContainerProps {
   client: Client
 }
 
 const Header: React.FC<ContainerProps> = ({ client }) => {
+  const [button, setButton] = useState<boolean>(false);
   const [t, i18n] = useTranslation("translation");
+
+  const addButton = () => {
+    setButton(!button);
+  }
 
   return (
     <IonHeader>
@@ -38,7 +45,9 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
               Login
             </IonButton>
           </Link>
-          <IonButton>
+          <IonButton
+            onClick={() => addButton()}
+          >
             <img 
               src="https://egon-cloud.com/Egon_ERP/_lib/img/logo.png"
               alt="egon-logo"
@@ -53,6 +62,11 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
           <IonButton fill="solid" onClick={() => i18n.changeLanguage("en")}>EN</IonButton>
         </IonButtons>
       </IonToolbar>
+      {
+        button
+          ? <AddNewSpaceButton />
+          : <></>
+      }
     </IonHeader>
   );
 };
