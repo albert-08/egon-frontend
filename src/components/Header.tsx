@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Client } from '../models/client.model';
-import AddNewSpaceButton from './AddNewSpaceButton';
+import SpacesMenu from './SpacesMenu';
 
 interface ContainerProps {
   client: Client
@@ -64,7 +64,7 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
       </IonToolbar>
       {
         button
-          ? <AddNewSpaceButton />
+          ? <SpacesMenu />
           : <></>
       }
     </IonHeader>

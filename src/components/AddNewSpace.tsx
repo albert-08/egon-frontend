@@ -38,9 +38,7 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
     
   if (cancel) {
     return (
-      <>
-        <AddNewSpaceButton />
-      </>
+      <></>
     )
   }
 
