@@ -2,10 +2,13 @@ import { IonButton, IonButtons, IonHeader, IonIcon, IonToolbar } from '@ionic/re
 import { logIn } from 'ionicons/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { Client } from '../models/client.model';
 
-interface ContainerProps { }
+interface ContainerProps {
+  client: Client
+}
 
-const Header: React.FC<ContainerProps> = () => {
+const Header: React.FC<ContainerProps> = ({ client }) => {
   const [t, i18n] = useTranslation("translation");
 
   return (
@@ -13,12 +16,16 @@ const Header: React.FC<ContainerProps> = () => {
       <IonToolbar color="primary">
         <IonButtons slot="start">
           <IonButton>
-            <img
-              src="https://egonsolutionscloudtrailbucket.s3-us-west-2.amazonaws.com/Recursos/cs_28/urp_426.jpg"
-              alt="logo"
-              width="40"
-              height="40"  
-            />
+            {
+              client.logo !== ''
+                ? <img
+                    src={client.logo}
+                    alt="logo"
+                    width="40"
+                    height="40"  
+                  />
+                : <></>
+            }
           </IonButton>
           <IonButton>
             {t('main.main')}

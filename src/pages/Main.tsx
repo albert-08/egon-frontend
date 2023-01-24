@@ -9,7 +9,7 @@ const Main: React.FC = (): any => {
 
   return (
     <IonPage>
-      <Header />
+      <Header client={{logo: '', name: ''}}/>
         <IonContent>
           {
             getLocalStorage
