@@ -1,14 +1,15 @@
 import { IonButton, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import ClientContext from '../context/Client/ClientContext';
 import './AddNewSpace.css';
 
 interface ContainerProps {}
 
 const AddNewSpace: React.FC<ContainerProps> = () => {
+  const { clients } = useContext(ClientContext);
   const [bdalias, setBDAlias] = useState<string>('');
+  const [agree, setAgree] = useState<boolean>(false);
   const [cancel, setCancel] = useState<boolean>(false);
-  const [clients, setClients] = useState<any>([]);
-  const [space, setSpace] = useState<boolean>(false); 
 
   const url = 'http://127.0.0.1:4000/clients/';
 
@@ -22,9 +23,9 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
         }
       });
       const data = await response.json();
-      setClients([...clients, data]);
+      localStorage.setItem('sec_conn_bd', JSON.stringify([...clients, data]));
       alert("Espacio añadido exitosamente");
-      setSpace(true);
+      setAgree(true);
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
     }
@@ -34,11 +35,7 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
     setCancel(true);
   }
 
-  if (clients.length > 0) {
-    localStorage.setItem('sec_conn_bd', JSON.stringify(clients)); 
-  }
-
-  if (space) {
+  if (agree) {
     return (
       <></>
     );

@@ -10,17 +10,20 @@ const Main: React.FC = (): any => {
   const { clients, getClients } = useContext(ClientContext);
   
   useEffect(() => {
+    if (!localStorage.getItem('sec_conn_bd')) {
+      localStorage.setItem('sec_conn_bd', JSON.stringify([]));
+    }
     getClients();
   }, []);
 
-  console.log(clients);
+  console.log(`Context: ${JSON.stringify(clients)}`);
 
   return (
     <IonPage>
       <Header client={{logo: '', name: '', logo2: '', slides: ''}}/>
         <IonContent>
           {
-            clients || clients?.length > 0
+            clients.length > 0
               ? <AddedSpaces /> 
               : <AddNewSpace />
           }

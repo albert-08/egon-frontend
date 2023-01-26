@@ -1,12 +1,13 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList } from '@ionic/react';
+import { useContext } from 'react';
+import ClientContext from '../context/Client/ClientContext';
 import { Space } from '../models/space.model';
 import SpaceItem from './SpaceItem';
 
 interface ContainerProps { }
 
 const AddedSpaces: React.FC<ContainerProps> = () => {
-  const spacesData: any = localStorage.getItem('sec_conn_bd');
-  const spaces: any = JSON.parse(spacesData);
+  const { clients } = useContext(ClientContext);
   
   return (
     <IonCard>
@@ -16,7 +17,7 @@ const AddedSpaces: React.FC<ContainerProps> = () => {
       </IonCardHeader>
       <IonCardContent>
         <IonList>
-          { spaces?.map((space: Space) => <SpaceItem key={space.csiid} space={space} />) }   
+          { clients?.map((client: Space) => <SpaceItem key={client.csiid} space={client} />) }   
         </IonList>
       </IonCardContent>
     </IonCard>
