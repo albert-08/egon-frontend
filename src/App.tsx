@@ -3,7 +3,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Main from './pages/Main';
+import MainPage from './pages/MainPage';
 import Predio from './pages/Predio';
 import Register from './pages/Register';
 
@@ -40,7 +40,7 @@ const App: React.FC = () => (
           <Login />
         </Route>
         <Route exact path="/main">
-          <Main />
+          <MainPage />
         </Route>
         <Route exact path="/predio">
           <Predio />
