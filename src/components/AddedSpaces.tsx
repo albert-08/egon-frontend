@@ -16,7 +16,7 @@ const AddedSpaces: React.FC<ContainerProps> = () => {
       </IonCardHeader>
       <IonCardContent>
         <IonList>
-          { spaces.map((space: Space) => <SpaceItem key={space.csiid} space={space} />) }   
+          { spaces?.map((space: Space) => <SpaceItem key={space.csiid} space={space} />) }   
         </IonList>
       </IonCardContent>
     </IonCard>

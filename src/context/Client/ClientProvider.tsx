@@ -2,7 +2,11 @@ import { useReducer } from "react";
 import ClientReducer from "./ClientReducer";
 import ClientContext from "./ClientContext";
 
-const ClientState = (props: any) => {
+interface ClientProviderProps {
+  children: JSX.Element | JSX.Element[]
+}
+
+const ClientProvider: React.FC<ClientProviderProps>  = ({ children }) => {
   const initialState: any = {
     clients: [],
   };
@@ -10,9 +14,11 @@ const ClientState = (props: any) => {
 
   const getClients = () => {
     // get data from API
+    const getLocalStorageData: any = localStorage.getItem('sec_conn_bd');
+    const data: any = JSON.parse(getLocalStorageData);
     dispatch({
-      type: 'GET_CLIENTS'
-      payload: res.data.data
+      type: 'GET_CLIENTS',
+      payload: data
     });
   };
 
@@ -21,9 +27,9 @@ const ClientState = (props: any) => {
       clients: state.clients,
       getClients
     }}>
-      {props.childres}
+      { children }
     </ClientContext.Provider>
   )
 }
 
-export default ClientState;
+export default ClientProvider;

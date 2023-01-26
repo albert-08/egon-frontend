@@ -12,6 +12,7 @@ export default (state: any, action: any) => {
       break;
   
     default:
+      return state
       break;
   }
 }

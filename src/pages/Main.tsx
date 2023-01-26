@@ -7,25 +7,20 @@ import Header from '../components/Header';
 import ClientContext from '../context/Client/ClientContext';
 
 const Main: React.FC = (): any => {
-  const { getClients } = useContext(ClientContext);
-  const [spaces, setSpaces] = useState([]);
+  const { clients, getClients } = useContext(ClientContext);
   
   useEffect(() => {
-    // getClients();
-    const getLocalStorage: any = localStorage.getItem('sec_conn_bd');
-    if (getLocalStorage) {
-      setSpaces(JSON.parse(getLocalStorage));
-    }
+    getClients();
   }, []);
 
-  console.log(spaces);
+  console.log(clients);
 
   return (
     <IonPage>
       <Header client={{logo: '', name: '', logo2: '', slides: ''}}/>
         <IonContent>
           {
-            spaces.length > 0
+            clients || clients?.length > 0
               ? <AddedSpaces /> 
               : <AddNewSpace />
           }
