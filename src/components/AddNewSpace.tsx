@@ -7,7 +7,7 @@ import './AddNewSpace.css';
 interface ContainerProps {}
 
 const AddNewSpace: React.FC<ContainerProps> = () => {
-  const { clients } = useContext(ClientContext);
+  const { clients, getClients } = useContext(ClientContext);
   const { getMain } = useContext(MainContext);
   const [bdalias, setBDAlias] = useState<string>('');
 
@@ -25,6 +25,7 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
       const data = await response.json();
       localStorage.setItem('sec_conn_bd', JSON.stringify([...clients, data]));
       alert("Espacio añadido exitosamente");
+      getClients();
       getMain();
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
