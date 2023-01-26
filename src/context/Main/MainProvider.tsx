@@ -9,6 +9,7 @@ interface MainProviderProps {
 const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const initialState: any = {
     main: true,
+    menu: false,
     addButton: false,
     editButton: false,
     languageButtons: false
@@ -18,6 +19,20 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const getMain = () => {
     dispatch({
       type: 'GET_MAIN',
+      payload: null
+    });
+  };
+
+  const getMenu = () => {
+    dispatch({
+      type: 'GET_MENU',
+      payload: null
+    });
+  };
+
+  const hideMenu = () => {
+    dispatch({
+      type: 'HIDE_MENU',
       payload: null
     });
   };
@@ -46,10 +61,13 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   return (
     <MainContext.Provider value={{
       main: state.main,
+      menu: state.menu,
       addButton: state.addButton,
       editButton: state.editButton,
       languageButtons: state.languageButtons,
       getMain,
+      getMenu,
+      hideMenu,
       getAddButton,
       getEditButton,
       getLanguageButtons

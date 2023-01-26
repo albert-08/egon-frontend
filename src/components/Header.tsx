@@ -1,7 +1,6 @@
-import { IonButton, IonButtons, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
-import { logIn } from 'ionicons/icons';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { IonButton, IonButtons, IonHeader, IonToolbar } from '@ionic/react';
+import { useContext } from 'react';
+import MainContext from '../context/Main/MainContext';
 import { Client } from '../models/client.model';
 import SpacesMenu from './SpacesMenu';
 
@@ -10,10 +9,14 @@ interface ContainerProps {
 }
 
 const Header: React.FC<ContainerProps> = ({ client }) => {
-  const [button, setButton] = useState<boolean>(false);
+  const { menu, getMenu, hideMenu } = useContext(MainContext);
 
-  const addButton = () => {
-    setButton(!button);
+  const toggleMenu = () => {
+    if (menu) {
+      hideMenu();
+    } else {
+      getMenu();
+    }
   }
 
   return (
@@ -35,7 +38,7 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
         </IonButtons>
         <IonButtons slot='end'>
           <IonButton
-            onClick={() => addButton()}
+            onClick={() => toggleMenu()}
           >
             <img 
               src="https://egon-cloud.com/Egon_ERP/_lib/img/logo.png"
@@ -47,7 +50,7 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
         </IonButtons>
       </IonToolbar>
       {
-        button
+        menu
           ? <SpacesMenu />
           : <></>
       }
