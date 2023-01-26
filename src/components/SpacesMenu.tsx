@@ -1,37 +1,23 @@
 import { IonButton, IonList } from "@ionic/react";
-import { useState } from "react";
-import AddNewSpaceButton from "./AddNewSpaceButton";
-import ChangeLanguageButtons from "./ChangeLanguageButtons";
-import EditSpacesButton from "./EditSpacesButton";
+import { useContext } from "react";
+import MainContext from "../context/Main/MainContext";
 import './SpacesMenu.css'
 
 interface ContainerProps { }
 
 const SpacesMenu: React.FC<ContainerProps> = () => {
-  const [button, setButton] = useState<string>('');
+  const { getAddButton, getEditButton, getLanguageButtons } = useContext(MainContext);
 
   const changeLanguageButton = () => {
-    setButton('language');
+    getLanguageButtons();
   }
   
   const addSpaceButton = () => {
-    setButton('add');
+    getAddButton();
   }
   
   const editSpaceButton = () => {
-    setButton('edit');
-  }
-
-  if (button.localeCompare('language') === 0) {
-    return <ChangeLanguageButtons/>
-  }
-
-  if (button.localeCompare('add') === 0) {
-    return <AddNewSpaceButton />
-  }
-
-  if (button.localeCompare('edit') === 0) {
-    return <EditSpacesButton/>
+    getEditButton();
   }
 
   return (

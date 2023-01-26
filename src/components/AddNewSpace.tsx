@@ -1,15 +1,15 @@
 import { IonButton, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import { useContext, useState } from 'react';
 import ClientContext from '../context/Client/ClientContext';
+import MainContext from '../context/Main/MainContext';
 import './AddNewSpace.css';
 
 interface ContainerProps {}
 
 const AddNewSpace: React.FC<ContainerProps> = () => {
   const { clients } = useContext(ClientContext);
+  const { getMain } = useContext(MainContext);
   const [bdalias, setBDAlias] = useState<string>('');
-  const [agree, setAgree] = useState<boolean>(false);
-  const [cancel, setCancel] = useState<boolean>(false);
 
   const url = 'http://127.0.0.1:4000/clients/';
 
@@ -25,26 +25,14 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
       const data = await response.json();
       localStorage.setItem('sec_conn_bd', JSON.stringify([...clients, data]));
       alert("Espacio añadido exitosamente");
-      setAgree(true);
+      getMain();
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
     }
   };
 
   const onCancel = () => {
-    setCancel(true);
-  }
-
-  if (agree) {
-    return (
-      <></>
-    );
-  }
-    
-  if (cancel) {
-    return (
-      <></>
-    );
+    getMain();
   }
 
   return (

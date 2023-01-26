@@ -10,6 +10,7 @@ import translation_es_mx from './translations/es_mx/translation.json';
 import translation_es_col from './translations/es_col/translation.json';
 import translation_en from './translations/en/translation.json';
 import ClientProvider from './context/Client/ClientProvider';
+import MainProvider from './context/Main/MainProvider';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -32,9 +33,11 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next}>
-      <ClientProvider>
-        <App />
-      </ClientProvider>
+      <MainProvider>
+        <ClientProvider>
+          <App />
+        </ClientProvider>
+      </MainProvider>
     </I18nextProvider>
   </React.StrictMode>
 );
