@@ -1,7 +1,6 @@
 import { IonButton, IonButtons, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
 import { logIn } from 'ionicons/icons';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Client } from '../models/client.model';
 import SpacesMenu from './SpacesMenu';
@@ -12,7 +11,6 @@ interface ContainerProps {
 
 const Header: React.FC<ContainerProps> = ({ client }) => {
   const [button, setButton] = useState<boolean>(false);
-  const [t, i18n] = useTranslation("translation");
 
   const addButton = () => {
     setButton(!button);
@@ -34,17 +32,8 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
                 : <></>
             }
           </IonButton>
-          <IonButton>
-            {t('main.main')}
-          </IonButton>
         </IonButtons>
         <IonButtons slot='end'>
-          <Link to="/login">
-            <IonButton fill="outline">
-              <IonIcon slot="start" icon={logIn}></IonIcon>
-              Login
-            </IonButton>
-          </Link>
           <IonButton
             onClick={() => addButton()}
           >
@@ -55,11 +44,6 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
               height="20" 
             />
           </IonButton>
-        </IonButtons>
-        <IonButtons>
-          <IonButton fill="solid" onClick={() => i18n.changeLanguage("es_mx")}>ES-MX</IonButton>
-          <IonButton fill="solid" onClick={() => i18n.changeLanguage("es_col")}>ES-COL</IonButton>
-          <IonButton fill="solid" onClick={() => i18n.changeLanguage("en")}>EN</IonButton>
         </IonButtons>
       </IonToolbar>
       {

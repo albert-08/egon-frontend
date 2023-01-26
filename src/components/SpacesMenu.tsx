@@ -1,6 +1,7 @@
 import { IonButton, IonList } from "@ionic/react";
 import { useState } from "react";
 import AddNewSpaceButton from "./AddNewSpaceButton";
+import ChangeLanguageButtons from "./ChangeLanguageButtons";
 import EditSpacesButton from "./EditSpacesButton";
 import './SpacesMenu.css'
 
@@ -22,7 +23,7 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
   }
 
   if (button.localeCompare('language') === 0) {
-    return <></>
+    return <ChangeLanguageButtons/>
   }
 
   if (button.localeCompare('add') === 0) {

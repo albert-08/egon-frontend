@@ -1,5 +1,5 @@
 export interface Space {
   csiid: number
-  alias: string
-  db: string
+  bdalias: string
+  bdname: string
 }
