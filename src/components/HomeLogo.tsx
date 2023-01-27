@@ -1,15 +1,15 @@
 import { Client } from "../models/client.model";
 
 interface ContainerProps { 
-  client: Client
+  logo: any
 }
 
-const HomeLogo: React.FC<ContainerProps> = ({client}) => {
+const HomeLogo: React.FC<ContainerProps> = ({logo}) => {
   return (
     <div className='logo-condominio'>
       <img
-        src={client.logo2}
-        alt={client.name}
+        src={logo.logoURL}
+        alt='logo'
         width="100"
         height="100"
       />

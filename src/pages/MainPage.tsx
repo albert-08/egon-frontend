@@ -6,7 +6,7 @@ import MainContainer from '../containers/MainContainer';
 const MainPage: React.FC = (): any => {
   return (
     <IonPage>
-      <Header client={{logo: '', name: '', logo2: '', slides: ''}}/>
+      <Header logo={{logoURL: ''}}/>
         <IonContent>
           <MainContainer />
         </IonContent>

@@ -5,10 +5,10 @@ import { Client } from '../models/client.model';
 import SpacesMenu from './SpacesMenu';
 
 interface ContainerProps {
-  client: Client
+  logo: any
 }
 
-const Header: React.FC<ContainerProps> = ({ client }) => {
+const Header: React.FC<ContainerProps> = ({ logo }) => {
   const { menu, getMenu, hideMenu } = useContext(MainContext);
 
   const toggleMenu = () => {
@@ -25,9 +25,9 @@ const Header: React.FC<ContainerProps> = ({ client }) => {
         <IonButtons slot="start">
           <IonButton>
             {
-              client.logo !== ''
+              logo.logoURL !== ''
                 ? <img
-                    src={client.logo}
+                    src={logo.logoURL}
                     alt="logo"
                     width="40"
                     height="40"  

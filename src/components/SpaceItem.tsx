@@ -8,19 +8,22 @@ interface ContainerProps {
 }
 
 const SpaceItem: React.FC<ContainerProps> = ({space}) => {
-  const [client, setClient] = useState<any>({});
+  const [logo, setLogo] = useState<any>({});
 
   const getClientData = async () => {
-    const url = 'http://127.0.0.1:4000/clients/info/';
+    const url = 'http://127.0.0.1:4000/clients/logo/';
     const response = await fetch(url, {
       method: 'POST',
-      body: JSON.stringify({ database: space.bdname }),
+      body: JSON.stringify({ 
+        bdname: space.bdname,
+        csiid: space.csiid
+      }),
       headers: {
         'Content-Type': 'application/json',
       }
     });
     const data = await response.json();
-    setClient(data);
+    setLogo(data);
   }
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
       <IonItem>
         <IonAvatar slot='start'>
           <img
-            src={space.bdname}
+            src={logo.logoURL}
             alt='logo-name'
           />
         </IonAvatar>
