@@ -40,7 +40,7 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
           />
         </IonAvatar>
         <IonLabel>
-          <p>{space.bdname}</p>
+          <p>{space.bdalias}</p>
         </IonLabel>
       </IonItem>
     </Link>      

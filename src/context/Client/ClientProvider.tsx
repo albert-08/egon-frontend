@@ -14,7 +14,7 @@ const ClientProvider: React.FC<ClientProviderProps>  = ({ children }) => {
 
   const getClients = () => {
     // get data from API
-    const getLocalStorageData: any = localStorage.getItem('sec_conn_bd');
+    const getLocalStorageData: any = localStorage.getItem('spaces');
     const data: any = JSON.parse(getLocalStorageData);
     dispatch({
       type: 'GET_CLIENTS',

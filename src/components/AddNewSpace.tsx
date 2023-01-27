@@ -23,7 +23,7 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
         }
       });
       const data = await response.json();
-      localStorage.setItem('sec_conn_bd', JSON.stringify([...clients, data]));
+      localStorage.setItem('spaces', JSON.stringify([...clients, data]));
       getClients();
       getMain();
     } catch (error) {

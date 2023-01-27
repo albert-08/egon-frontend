@@ -36,10 +36,9 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    const spacesData: any = localStorage.getItem('sec_conn_bd');
+    const spacesData: any = localStorage.getItem('spaces');
     const spaces = JSON.parse(spacesData);
     setClient(spaces);
-    console.log(`Spaces: ${JSON.stringify(spaces)}`);
     const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
     getClientData(database);
   }, [])

@@ -38,7 +38,7 @@ const Login: React.FC = () => {
     const data = await response.json();
     // setLogin(data);
     if (data.length > 0) {
-      localStorage.setItem('sec_conn_bd', JSON.stringify(data));
+      localStorage.setItem('spaces', JSON.stringify(data));
       history.push('/main');
     }
   }

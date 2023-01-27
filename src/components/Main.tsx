@@ -9,8 +9,8 @@ const Main: React.FC<ContainerProps> = () => {
   const { clients, getClients } = useContext(ClientContext);
   
   useEffect(() => {
-    if (!localStorage.getItem('sec_conn_bd')) {
-      localStorage.setItem('sec_conn_bd', JSON.stringify([]));
+    if (!localStorage.getItem('spaces')) {
+      localStorage.setItem('spaces', JSON.stringify([]));
     }
     getClients();
   }, []);
