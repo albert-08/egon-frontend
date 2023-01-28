@@ -33,13 +33,13 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home/:bdalias">
+        <Route exact path="/EgonPortal/:bdalias">
           <Home />
         </Route>
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route exact path="/main">
+        <Route exact path="/EgonPortal">
           <MainPage />
         </Route>
         <Route exact path="/predio">
@@ -52,7 +52,7 @@ const App: React.FC = () => (
           <Register />
         </Route>
         <Route exact path="/">
-          <Redirect to="/main" />
+          <Redirect to="/EgonPortal" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

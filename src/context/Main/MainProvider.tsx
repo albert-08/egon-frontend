@@ -9,6 +9,7 @@ interface MainProviderProps {
 const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const initialState: any = {
     main: true,
+    addSpaces: false,
     menu: false,
     addButton: false,
     editButton: false,
@@ -19,6 +20,13 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const getMain = () => {
     dispatch({
       type: 'GET_MAIN',
+      payload: null
+    });
+  };
+
+  const getAddSpaces = () => {
+    dispatch({
+      type: 'GET_ADD_SPACES',
       payload: null
     });
   };
@@ -61,11 +69,13 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   return (
     <MainContext.Provider value={{
       main: state.main,
+      addSpaces: state.addSpaces,
       menu: state.menu,
       addButton: state.addButton,
       editButton: state.editButton,
       languageButtons: state.languageButtons,
       getMain,
+      getAddSpaces,
       getMenu,
       hideMenu,
       getAddButton,

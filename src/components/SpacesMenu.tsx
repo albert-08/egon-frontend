@@ -6,14 +6,14 @@ import './SpacesMenu.css'
 interface ContainerProps { }
 
 const SpacesMenu: React.FC<ContainerProps> = () => {
-  const { getAddButton, getEditButton, getLanguageButtons } = useContext(MainContext);
+  const { getAddSpaces, getEditButton, getLanguageButtons } = useContext(MainContext);
 
   const changeLanguageButton = () => {
     getLanguageButtons();
   }
   
   const addSpaceButton = () => {
-    getAddButton();
+    getAddSpaces();
   }
   
   const editSpaceButton = () => {

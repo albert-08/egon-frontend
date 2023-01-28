@@ -1,5 +1,6 @@
 export const GET_CLIENTS = 'GET_CLIENTS'
 export const GET_MAIN = 'GET_MAIN'
+export const GET_ADD_SPACES = 'GET_ADD_SPACES'
 export const GET_MENU = 'GET_MENU'
 export const HIDE_MENU = 'HIDE_MENU'
 export const GET_ADD_BUTTON = 'GET_ADD_BUTTON'

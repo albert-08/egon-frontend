@@ -11,10 +11,6 @@ const AddedSpaces: React.FC<ContainerProps> = () => {
   
   return (
     <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Espacios</IonCardTitle>
-        <IonCardSubtitle>Espacios agregados:</IonCardSubtitle>
-      </IonCardHeader>
       <IonCardContent>
         <IonList>
           { clients?.map((client: Space) => <SpaceItem key={client.csiid} space={client} />) }   

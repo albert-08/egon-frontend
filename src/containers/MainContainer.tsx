@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import AddNewSpace from "../components/AddNewSpace";
 import AddNewSpaceButton from "../components/AddNewSpaceButton";
 import ChangeLanguageButtons from "../components/ChangeLanguageButtons";
 import EditSpacesButton from "../components/EditSpacesButton";
@@ -8,10 +9,14 @@ import MainContext from "../context/Main/MainContext";
 interface ContainerProps { }
 
 const MainContainer: React.FC<ContainerProps> = () => {
-  const { main, addButton, editButton, languageButtons } = useContext(MainContext);
+  const { addSpaces, main, addButton, editButton, languageButtons } = useContext(MainContext);
 
   if (main) {
     return <Main />
+  }
+
+  if (addSpaces) {
+    return <AddNewSpace />
   }
 
   if (addButton) {
