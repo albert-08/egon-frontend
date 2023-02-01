@@ -48,10 +48,9 @@ export default (state: any, action: any) => {
       return {
         main: false,
         addSpaces: false,
-        deleteSpace: true,
+        deleteSpaces: true,
         menu: false,
         addButton: false,
-        editButton: true,
         languageButtons: false
       }
     case GET_LANGUAGE_BUTTONS:

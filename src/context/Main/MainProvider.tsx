@@ -10,7 +10,7 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const initialState: any = {
     main: true,
     addSpaces: false,
-    deleteSpace: false,
+    deleteSpaces: false,
     menu: false,
     addButton: false,
     editButton: false,
@@ -71,7 +71,7 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
     <MainContext.Provider value={{
       main: state.main,
       addSpaces: state.addSpaces,
-      deleteSpace: state.deleteSpace,
+      deleteSpaces: state.deleteSpaces,
       menu: state.menu,
       addButton: state.addButton,
       deleteButton: state.deleteButton,

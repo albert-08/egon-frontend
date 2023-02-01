@@ -2,14 +2,14 @@ import { useContext } from "react";
 import AddNewSpace from "../components/AddNewSpace";
 import AddNewSpaceButton from "../components/AddNewSpaceButton";
 import ChangeLanguageButtons from "../components/ChangeLanguageButtons";
-import EditSpacesButton from "../components/EditSpacesButton";
+import DeleteSpaces from "../components/DeleteSpaces";
 import Main from "../components/Main";
 import MainContext from "../context/Main/MainContext";
 
 interface ContainerProps { }
 
 const MainContainer: React.FC<ContainerProps> = () => {
-  const { addSpaces, main, addButton, deleteButton, languageButtons } = useContext(MainContext);
+  const { addSpaces, main, addButton, deleteSpaces, languageButtons } = useContext(MainContext);
 
   if (main) {
     return <Main />
@@ -23,8 +23,8 @@ const MainContainer: React.FC<ContainerProps> = () => {
     return <AddNewSpaceButton />
   }
 
-  if (deleteButton) {
-    return <EditSpacesButton />
+  if (deleteSpaces) {
+    return <DeleteSpaces />
   }
 
   if (languageButtons) {

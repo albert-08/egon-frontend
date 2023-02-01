@@ -3,7 +3,7 @@ import { createContext } from "react";
 export type MainContextProps = {
   main: boolean,
   addSpaces: boolean,
-  deleteSpace: boolean,
+  deleteSpaces: boolean,
   menu: boolean,
   addButton: boolean,
   deleteButton: boolean,

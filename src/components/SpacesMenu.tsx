@@ -16,7 +16,7 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
     getAddSpaces();
   }
   
-  const editSpaceButton = () => {
+  const deleteSpaces = () => {
     getDeleteButton();
   }
 
@@ -39,7 +39,7 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
       <IonButton
         expand="full"
         color="light"
-        onClick={() => editSpaceButton()}
+        onClick={() => deleteSpaces()}
       >
         Eliminar espacios
       </IonButton>       

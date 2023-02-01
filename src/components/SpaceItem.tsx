@@ -1,9 +1,6 @@
-import { IonAvatar, IonButton, IonButtons, IonIcon, IonItem, IonLabel } from '@ionic/react';
-import { trashOutline } from 'ionicons/icons';
-import { useContext, useEffect, useState } from 'react';
+import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ClientContext from '../context/Client/ClientContext';
-import MainContext from '../context/Main/MainContext';
 import { Space } from '../models/space.model';
 
 interface ContainerProps { 
@@ -11,8 +8,6 @@ interface ContainerProps {
 }
 
 const SpaceItem: React.FC<ContainerProps> = ({space}) => {
-  const { clients, getClients } = useContext(ClientContext);
-  const { deleteSpace } = useContext(MainContext);
   const [logo, setLogo] = useState<any>({});
     
   const getClientData = async () => {
@@ -33,17 +28,10 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
 
   useEffect(() => {
     getClientData();
-  }, [clients]);
-  
-  const onDelete = () => {
-    const itemToDelete = clients.findIndex((client: any) => client.csiid === space.csiid);
-    clients.splice(itemToDelete, 1);
-    localStorage.setItem('spaces', JSON.stringify(clients));
-    getClients();
-  }
-  
-  if (deleteSpace) {
-    return (
+  }, []);
+    
+  return (
+    <Link to={`/EgonPortal/${space.bdalias}`}>  
       <IonItem>
         <IonAvatar slot='start'>
           <img
@@ -54,32 +42,9 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
         <IonLabel>
           <p>{space.bdalias}</p>
         </IonLabel>
-        <IonButtons>
-          <IonButton
-            onClick={() => onDelete()}
-          >
-            <IonIcon icon={trashOutline}></IonIcon>
-          </IonButton>
-        </IonButtons>
       </IonItem>
-    );
-  } else {
-    return (
-      <Link to={`/EgonPortal/${space.bdalias}`}>  
-        <IonItem>
-          <IonAvatar slot='start'>
-            <img
-              src={logo.logoURL}
-              alt='logo-name'
-            />
-          </IonAvatar>
-          <IonLabel>
-            <p>{space.bdalias}</p>
-          </IonLabel>
-        </IonItem>
-      </Link>      
-    );
-  }
+    </Link>      
+  );
 };
 
 export default SpaceItem;
