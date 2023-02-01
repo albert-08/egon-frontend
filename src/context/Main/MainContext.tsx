@@ -12,6 +12,7 @@ export type MainContextProps = {
   getAddSpaces: any,
   getMenu: any,
   hideMenu: any,
+  saveDelete: any,
   getAddButton: any,
   getDeleteButton: any,
   getLanguageButtons: any

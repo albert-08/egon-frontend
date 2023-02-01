@@ -60,6 +60,13 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
     });
   };
 
+  const saveDelete = () => {
+    dispatch({
+      type: 'SAVE_DELETE',
+      payload: null
+    });
+  };
+
   const getLanguageButtons = () => {
     dispatch({
       type: 'GET_LANGUAGE_BUTTONS',
@@ -82,6 +89,7 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
       hideMenu,
       getAddButton,
       getDeleteButton,
+      saveDelete,
       getLanguageButtons
     }}>
       { children }

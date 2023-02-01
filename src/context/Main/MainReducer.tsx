@@ -1,4 +1,4 @@
-import { GET_ADD_BUTTON, GET_ADD_SPACES, GET_DELETE_BUTTON, GET_LANGUAGE_BUTTONS, GET_MAIN, GET_MENU, HIDE_MENU } from "../types"
+import { GET_ADD_BUTTON, GET_ADD_SPACES, GET_DELETE_BUTTON, GET_LANGUAGE_BUTTONS, GET_MAIN, GET_MENU, HIDE_MENU, SAVE_DELETE } from "../types"
 
 export default (state: any, action: any) => {
   const { payload, type } = action;
@@ -52,6 +52,11 @@ export default (state: any, action: any) => {
         menu: false,
         addButton: false,
         languageButtons: false
+      }
+    case SAVE_DELETE:
+      return {
+        ...state,
+        deleteSpaces: false
       }
     case GET_LANGUAGE_BUTTONS:
       return {
