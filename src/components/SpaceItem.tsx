@@ -37,7 +37,7 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
   
   const onDelete = () => {
     const itemToDelete = clients.findIndex((client: any) => client.csiid === space.csiid);
-    clients.splice(clients[itemToDelete], 1);
+    clients.splice(itemToDelete, 1);
     localStorage.setItem('spaces', JSON.stringify(clients));
     getClients();
   }
