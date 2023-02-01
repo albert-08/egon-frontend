@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
     setClient(spaces);
     const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
     getClientData(database);
-  }, [])
+  }, [params])
   
   return (
     <>

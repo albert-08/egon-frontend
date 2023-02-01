@@ -1,5 +1,6 @@
 import { IonButton, IonButtons, IonHeader, IonToolbar } from '@ionic/react';
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import MainContext from '../context/Main/MainContext';
 import { Client } from '../models/client.model';
 import SpacesMenu from './SpacesMenu';
@@ -9,7 +10,12 @@ interface ContainerProps {
 }
 
 const Header: React.FC<ContainerProps> = ({ logo }) => {
+  let history = useHistory();
   const { menu, getMenu, hideMenu } = useContext(MainContext);
+
+  const toMain = () => {
+    history.push("/EgonPortal");
+  }
 
   const toggleMenu = () => {
     if (menu) {
@@ -34,6 +40,11 @@ const Header: React.FC<ContainerProps> = ({ logo }) => {
                   />
                 : <></>
             }
+          </IonButton>
+          <IonButton
+            onClick={toMain}
+          >
+            Inicio
           </IonButton>
         </IonButtons>
         <IonButtons slot='end'>
