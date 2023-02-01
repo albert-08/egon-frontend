@@ -1,4 +1,4 @@
-import { GET_ADD_BUTTON, GET_ADD_SPACES, GET_EDIT_BUTTON, GET_LANGUAGE_BUTTONS, GET_MAIN, GET_MENU, HIDE_MENU } from "../types"
+import { GET_ADD_BUTTON, GET_ADD_SPACES, GET_DELETE_BUTTON, GET_LANGUAGE_BUTTONS, GET_MAIN, GET_MENU, HIDE_MENU } from "../types"
 
 export default (state: any, action: any) => {
   const { payload, type } = action;
@@ -8,6 +8,7 @@ export default (state: any, action: any) => {
       return {
         main: true,
         addSpaces: false,
+        deleteSpace: false,
         menu: false,
         addButton: false,
         editButton: false,
@@ -17,6 +18,7 @@ export default (state: any, action: any) => {
       return {
         main: false,
         addSpaces: true,
+        deleteSpace: false,
         menu: false,
         addButton: false,
         editButton: false,
@@ -36,15 +38,17 @@ export default (state: any, action: any) => {
       return {
         main: false,
         addSpaces: false,
+        deleteSpace: false,
         menu: false,
         addButton: true,
         editButton: false,
         languageButtons: false
       }
-    case GET_EDIT_BUTTON:
+    case GET_DELETE_BUTTON:
       return {
         main: false,
         addSpaces: false,
+        deleteSpace: true,
         menu: false,
         addButton: false,
         editButton: true,
@@ -54,6 +58,7 @@ export default (state: any, action: any) => {
       return {
         main: false,
         addSpaces: false,
+        deleteSpace: false,
         menu: false,
         addButton: false,
         editButton: false,

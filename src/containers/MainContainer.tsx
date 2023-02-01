@@ -9,7 +9,7 @@ import MainContext from "../context/Main/MainContext";
 interface ContainerProps { }
 
 const MainContainer: React.FC<ContainerProps> = () => {
-  const { addSpaces, main, addButton, editButton, languageButtons } = useContext(MainContext);
+  const { addSpaces, main, addButton, deleteButton, languageButtons } = useContext(MainContext);
 
   if (main) {
     return <Main />
@@ -23,7 +23,7 @@ const MainContainer: React.FC<ContainerProps> = () => {
     return <AddNewSpaceButton />
   }
 
-  if (editButton) {
+  if (deleteButton) {
     return <EditSpacesButton />
   }
 

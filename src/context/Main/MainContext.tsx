@@ -3,16 +3,17 @@ import { createContext } from "react";
 export type MainContextProps = {
   main: boolean,
   addSpaces: boolean,
+  deleteSpace: boolean,
   menu: boolean,
   addButton: boolean,
-  editButton: boolean,
+  deleteButton: boolean,
   languageButtons: boolean,
   getMain: any,
   getAddSpaces: any,
   getMenu: any,
   hideMenu: any,
   getAddButton: any,
-  getEditButton: any,
+  getDeleteButton: any,
   getLanguageButtons: any
 }
 

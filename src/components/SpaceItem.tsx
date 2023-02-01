@@ -1,6 +1,9 @@
-import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
-import { useEffect, useState } from 'react';
+import { IonAvatar, IonButton, IonButtons, IonIcon, IonItem, IonLabel } from '@ionic/react';
+import { trashOutline } from 'ionicons/icons';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ClientContext from '../context/Client/ClientContext';
+import MainContext from '../context/Main/MainContext';
 import { Space } from '../models/space.model';
 
 interface ContainerProps { 
@@ -8,8 +11,10 @@ interface ContainerProps {
 }
 
 const SpaceItem: React.FC<ContainerProps> = ({space}) => {
+  const { clients, getClients } = useContext(ClientContext);
+  const { deleteSpace } = useContext(MainContext);
   const [logo, setLogo] = useState<any>({});
-
+    
   const getClientData = async () => {
     const url = 'http://127.0.0.1:4000/clients/logo/';
     const response = await fetch(url, {
@@ -30,8 +35,14 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
     getClientData();
   }, []);
   
-  return (
-    <Link to={`/EgonPortal/${space.bdalias}`}>  
+  const onDelete = () => {
+    const itemToDelete = clients.findIndex((client: any) => client.csiid === space.csiid);
+    clients.splice(clients[itemToDelete], 1);
+    localStorage.setItem('spaces', JSON.stringify(clients));
+  }
+  
+  if (deleteSpace) {
+    return (
       <IonItem>
         <IonAvatar slot='start'>
           <img
@@ -42,9 +53,32 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
         <IonLabel>
           <p>{space.bdalias}</p>
         </IonLabel>
+        <IonButtons>
+          <IonButton
+            onClick={() => onDelete()}
+          >
+            <IonIcon icon={trashOutline}></IonIcon>
+          </IonButton>
+        </IonButtons>
       </IonItem>
-    </Link>      
-  );
+    );
+  } else {
+    return (
+      <Link to={`/EgonPortal/${space.bdalias}`}>  
+        <IonItem>
+          <IonAvatar slot='start'>
+            <img
+              src={logo.logoURL}
+              alt='logo-name'
+            />
+          </IonAvatar>
+          <IonLabel>
+            <p>{space.bdalias}</p>
+          </IonLabel>
+        </IonItem>
+      </Link>      
+    );
+  }
 };
 
 export default SpaceItem;

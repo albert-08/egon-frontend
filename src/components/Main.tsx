@@ -1,4 +1,5 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
 import ClientContext from '../context/Client/ClientContext';
 import AddedSpaces from './AddedSpaces';
 import AddNewSpace from './AddNewSpace';
@@ -14,8 +15,14 @@ const Main: React.FC<ContainerProps> = () => {
     }
     getClients();
   }, []);
-  
-  if (clients.length > 0) {
+   
+  if (clients.length === 1) {
+    const spacesData: any = localStorage.getItem('spaces');
+    const spaces = JSON.parse(spacesData);
+    const bdalias = spaces[0].bdalias;
+    const url = `/EgonPortal/${bdalias}`;
+    return <Redirect to={url} />
+  } else if (clients.length > 1) {
     return <AddedSpaces />
   } else {
     return <AddNewSpace />

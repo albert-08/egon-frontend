@@ -10,6 +10,7 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
   const initialState: any = {
     main: true,
     addSpaces: false,
+    deleteSpace: false,
     menu: false,
     addButton: false,
     editButton: false,
@@ -52,9 +53,9 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
     });
   };
 
-  const getEditButton = () => {
+  const getDeleteButton = () => {
     dispatch({
-      type: 'GET_EDIT_BUTTON',
+      type: 'GET_DELETE_BUTTON',
       payload: null
     });
   };
@@ -70,16 +71,17 @@ const MainProvider: React.FC<MainProviderProps>  = ({ children }) => {
     <MainContext.Provider value={{
       main: state.main,
       addSpaces: state.addSpaces,
+      deleteSpace: state.deleteSpace,
       menu: state.menu,
       addButton: state.addButton,
-      editButton: state.editButton,
+      deleteButton: state.deleteButton,
       languageButtons: state.languageButtons,
       getMain,
       getAddSpaces,
       getMenu,
       hideMenu,
       getAddButton,
-      getEditButton,
+      getDeleteButton,
       getLanguageButtons
     }}>
       { children }

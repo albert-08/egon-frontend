@@ -6,7 +6,7 @@ import './SpacesMenu.css'
 interface ContainerProps { }
 
 const SpacesMenu: React.FC<ContainerProps> = () => {
-  const { getAddSpaces, getEditButton, getLanguageButtons } = useContext(MainContext);
+  const { getAddSpaces, getDeleteButton, getLanguageButtons } = useContext(MainContext);
 
   const changeLanguageButton = () => {
     getLanguageButtons();
@@ -17,7 +17,7 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
   }
   
   const editSpaceButton = () => {
-    getEditButton();
+    getDeleteButton();
   }
 
   return (
@@ -41,7 +41,7 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
         color="light"
         onClick={() => editSpaceButton()}
       >
-        Editar espacios
+        Eliminar espacios
       </IonButton>       
     </IonList>
   );
