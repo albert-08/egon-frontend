@@ -1,24 +1,17 @@
-import { IonContent, IonLabel, IonPage } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 
 import './Home.css';
 import '@ionic/react/css/ionic-swiper.css';
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Space } from '../models/space.model';
-import HomeSlides from '../components/HomeSlides';
-import HomeDescription from '../components/HomeDescription';
 import Header from '../components/Header';
-import HomeLogo from '../components/HomeLogo';
 import Footer from '../components/Footer';
-import MainContext from '../context/Main/MainContext';
-import AddNewSpace from '../components/AddNewSpace';
+import HomeContainer from '../containers/HomeContainer';
 
-const Home: React.FC = () => {
-  const { addSpaces } = useContext(MainContext);
+const HomePage: React.FC = () => {
   const [client, setClient] = useState<any>({});
   const [logo, setLogo] = useState<any>({});
-  const [slides, setSlides] = useState<any>([]);
-  const [spaces, setSpaces] = useState<any>([]);
   const params: any = useParams();
 
   const getClientData = async (db: any) => {
@@ -46,18 +39,12 @@ const Home: React.FC = () => {
     getClientData(database);
   }, [])
   
-  if (addSpaces) {
-    return <AddNewSpace />
-  }
-
   return (
     <>
       <IonPage>
         <Header logo={logo}/> 
         <IonContent>
-          <HomeLogo logo={logo}/>
-          {/* <HomeSlides slides={slides}/>
-          <HomeDescription client={client}/> */}
+          <HomeContainer logo={logo} />
         </IonContent>
         <Footer />
       </IonPage>
@@ -65,4 +52,4 @@ const Home: React.FC = () => {
   )
 };
 
-export default Home;
+export default HomePage;

@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import Predio from './pages/Predio';
@@ -34,7 +34,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/EgonPortal/:bdalias">
-          <Home />
+          <HomePage />
         </Route>
         <Route exact path="/login">
           <Login />
