@@ -31,7 +31,7 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
   }, []);
     
   return (
-    <Link to={`/EgonPortal/${space.bdalias}`}>  
+    <a href={`https://${space.url}/${space.bdalias}`}>  
       <IonItem>
         <IonAvatar slot='start'>
           <img
@@ -43,7 +43,7 @@ const SpaceItem: React.FC<ContainerProps> = ({space}) => {
           <p>{space.bdalias}</p>
         </IonLabel>
       </IonItem>
-    </Link>      
+    </a>      
   );
 };
 
