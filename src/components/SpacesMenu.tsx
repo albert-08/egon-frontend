@@ -34,14 +34,14 @@ const SpacesMenu: React.FC<ContainerProps> = () => {
         color="light"
         onClick={() => addSpaceButton()}
       >
-        Agregar espacio
+        Agregar Organización
       </IonButton>
       <IonButton
         expand="full"
         color="light"
         onClick={() => deleteSpaces()}
       >
-        Eliminar espacios
+        Eliminar Organizaciones
       </IonButton>       
     </IonList>
   );

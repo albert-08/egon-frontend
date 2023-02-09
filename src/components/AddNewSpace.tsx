@@ -38,9 +38,9 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
   return (
     <IonList>
       <IonItem>
-        <IonLabel>Espacio:</IonLabel>
+        <IonLabel>Organización:</IonLabel>
         <IonInput
-          placeholder="Espacio"
+          placeholder="Organización"
           onIonChange={(event: any) => {
             setBDAlias(event.target.value);
           }}
