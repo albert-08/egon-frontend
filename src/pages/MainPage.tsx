@@ -24,8 +24,6 @@ const MainPage: React.FC = (): any => {
     setDeferredPrompt(e);
     // Actualizar la IU para notificarle al usuario que se puede instalar tu PWA
     showInstallPromotion();
-    // De manera opcional, envía el evento de analíticos para saber si se mostró la promoción a a instalación del PWA
-    console.log(`'beforeinstallprompt' event was fired.`);
   });
 
   const installApp = async () => {
@@ -35,8 +33,6 @@ const MainPage: React.FC = (): any => {
     deferredPrompt.prompt();
     // Espera a que el usuario responda al mensaje
     const { outcome } = await deferredPrompt.userChoice;
-    // De manera opcional, envía analíticos del resultado que eligió el usuario
-    console.log(`User response to the install prompt: ${outcome}`);
     // Como ya usamos el mensaje, no lo podemos usar de nuevo, este es descartado
     setDeferredPrompt(null);
   }
