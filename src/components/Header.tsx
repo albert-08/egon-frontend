@@ -25,6 +25,10 @@ const Header: React.FC<ContainerProps> = ({ logo }) => {
     }
   }
 
+  const nav_background_color = "#4bab76"
+  const el: HTMLIonToolbarElement | null = document.querySelector('ion-toolbar');
+  el?.style.setProperty('--background', nav_background_color);
+
   return (
     <IonHeader>
       <IonToolbar color="primary">

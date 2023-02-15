@@ -8,10 +8,9 @@ import MainContext from "../context/Main/MainContext";
 
 interface ContainerProps {
   logo: string
-  csiid: any
 }
 
-const HomeContainer: React.FC<ContainerProps> = ({ logo, csiid}) => {
+const HomeContainer: React.FC<ContainerProps> = ({ logo }) => {
   const { addSpaces, addButton, deleteSpaces, languageButtons } = useContext(MainContext);
 
   if (addSpaces) {
@@ -31,7 +30,7 @@ const HomeContainer: React.FC<ContainerProps> = ({ logo, csiid}) => {
   }
 
   return (
-    <Home logo={logo} csiid={csiid} />
+    <Home logo={logo} />
   );
 };
 
