@@ -23,9 +23,13 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
         }
       });
       const data = await response.json();
-      localStorage.setItem('spaces', JSON.stringify([...clients, data]));
-      getClients();
-      getMain();
+      if (typeof data === "object") {
+        localStorage.setItem('spaces', JSON.stringify([...clients, data]));
+        getClients();
+        getMain();
+      } else {
+        alert("Error en el nombre del espacio, verifique con atención a clientes");
+      }
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
     }

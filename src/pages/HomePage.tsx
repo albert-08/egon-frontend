@@ -12,6 +12,7 @@ import HomeContainer from '../containers/HomeContainer';
 const HomePage: React.FC = () => {
   const [client, setClient] = useState<any>({});
   const [logo, setLogo] = useState<any>({});
+  const [csiid, setCsiid] = useState<any>({});
   const params: any = useParams();
 
   const getClientData = async (db: any) => {
@@ -37,6 +38,7 @@ const HomePage: React.FC = () => {
     setClient(spaces);
     const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
     getClientData(database);
+    setCsiid(database.csiid);
   }, [params])
   
   return (
@@ -44,7 +46,7 @@ const HomePage: React.FC = () => {
       <IonPage>
         <Header logo={logo}/> 
         <IonContent>
-          <HomeContainer logo={logo} />
+          <HomeContainer logo={logo} csiid={csiid}/>
         </IonContent>
         <Footer />
       </IonPage>
