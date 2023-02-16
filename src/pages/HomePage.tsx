@@ -37,13 +37,16 @@ const HomePage: React.FC = () => {
     try {
       const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify({ csiid: 51 }),
+        body: JSON.stringify({ 
+          bdname: "SanGilClubs",
+          csiid: 51 
+        }),
         headers: {
           'Content-Type': 'application/json',
         }
       });
       const info = await response.json();
-      return info;
+      setInfo(info);
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
     }
@@ -55,8 +58,7 @@ const HomePage: React.FC = () => {
     setClient(spaces);
     const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
     getClientData(database);
-    const info = getInfo(database);
-    setInfo(info);
+    getInfo(database);
   }, [params]);
 
   const body_background_color = "transparent"
