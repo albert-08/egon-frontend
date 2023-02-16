@@ -19,10 +19,9 @@ const Main: React.FC<ContainerProps> = () => {
   if (clients.length === 1) {
     const spacesData: any = localStorage.getItem('spaces');
     const spaces = JSON.parse(spacesData);
-    const baseUrl = spaces[0].url;
     const bdalias = spaces[0].bdalias;
-    const url = `https://${baseUrl}/${bdalias}`;
-    return <>{window.location.replace(url)}</>
+    const url = `/EgonPortal/${bdalias}`;
+    return <Redirect to={url} />
   } else if (clients.length > 1) {
     return <AddedSpaces />
   } else {
