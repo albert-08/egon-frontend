@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   const [client, setClient] = useState<any>({});
   const [logo, setLogo] = useState<any>({});
   const params: any = useParams();
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState<any>({});
   
   const getClientData = async (db: any) => {
     const url = 'http://127.0.0.1:4000/clients/logo/';
@@ -61,7 +61,8 @@ const HomePage: React.FC = () => {
     getInfo(database);
   }, [params]);
 
-  const body_background_color = "transparent"
+  const { body_background_color, nav_background_color } = info.styles;
+  
   const el: HTMLIonContentElement | null = document.querySelector('ion-content');
   el?.style.setProperty('--background', body_background_color);
   
