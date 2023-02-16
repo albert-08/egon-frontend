@@ -7,9 +7,10 @@ import SpacesMenu from './SpacesMenu';
 
 interface ContainerProps {
   logo: any
+  background: any
 }
 
-const Header: React.FC<ContainerProps> = ({ logo }) => {
+const Header: React.FC<ContainerProps> = ({ logo, background }) => {
   let history = useHistory();
   const { menu, getMenu, hideMenu } = useContext(MainContext);
 
@@ -25,13 +26,12 @@ const Header: React.FC<ContainerProps> = ({ logo }) => {
     }
   }
 
-  const nav_background_color = "#4bab76"
   const el: HTMLIonToolbarElement | null = document.querySelector('ion-toolbar');
-  el?.style.setProperty('--background', nav_background_color);
+  el?.style.setProperty('--background', background);
 
   return (
     <IonHeader>
-      <IonToolbar color="primary">
+      <IonToolbar>
         <IonButtons slot="start">
           <IonButton>
             {

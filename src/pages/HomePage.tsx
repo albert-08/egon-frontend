@@ -62,14 +62,13 @@ const HomePage: React.FC = () => {
   }, [params]);
 
   const { body_background_color, nav_background_color } = info.styles;
-  
   const el: HTMLIonContentElement | null = document.querySelector('ion-content');
   el?.style.setProperty('--background', body_background_color);
   
   return (
     <>
       <IonPage>
-        <Header logo={logo}/> 
+        <Header logo={logo} background={nav_background_color}/> 
         <IonContent>
           <HomeContainer logo={logo}/>
         </IonContent>
