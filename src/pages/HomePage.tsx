@@ -1,10 +1,8 @@
 import { IonContent, IonPage } from '@ionic/react';
-
 import './Home.css';
 import '@ionic/react/css/ionic-swiper.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Space } from '../models/space.model';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HomeContainer from '../containers/HomeContainer';
@@ -18,19 +16,13 @@ const HomePage: React.FC = () => {
   const params: any = useParams();
   
   useEffect(() => {
-    console.log('First useEffect');
-    const db = getSpaces(params);
-    setDatabase(db);
+    setDatabase(getSpaces(params));
   }, [params]);
 
   useEffect(() => {
-    console.log('Second useEffect');
-    const lg = getLogo(database);
-    setLogo(lg);
-    const config = getConfiguration(database);
-    setConfiguration(config);
-    const inf = getInfo(database);
-    setInfo(inf);
+    setLogo(getLogo(database));
+    setConfiguration(getConfiguration(database));
+    setInfo(getInfo(database));
   }, [database]);
   
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
