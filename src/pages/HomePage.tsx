@@ -9,22 +9,33 @@ import HomeContainer from '../containers/HomeContainer';
 import { getConfiguration, getInfo, getLogo, getSpaces } from '../utils/Home';
 
 const HomePage: React.FC = () => {
-  const [database, setDatabase] = useState<any>({});
   const [configuration, setConfiguration] = useState<any>({});
   const [info, setInfo] = useState<any>({});
   const [logo, setLogo] = useState<any>({});
   const params: any = useParams();
   
-  useEffect(() => {
-    setDatabase(getSpaces(params));
-  }, [params]);
+  const getClientLogo = async (database: any) => {
+    setLogo(await getLogo(database));
+  }
+
+  const getClientConfiguration = async (database: any) => {
+    setConfiguration(await getConfiguration(database));
+  }
+
+  const getClientInfo = async (database: any) => {
+    setInfo(await getInfo(database));
+  }
 
   useEffect(() => {
-    setLogo(getLogo(database));
-    setConfiguration(getConfiguration(database));
-    setInfo(getInfo(database));
-  }, [database]);
+    const database = getSpaces(params);
+    getClientLogo(database);
+    getClientConfiguration(database);
+    getClientInfo(database);
+  }, [params]);
   
+  console.log(JSON.stringify(info));
+  console.log(JSON.stringify(configuration));
+
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
   const navBackgroundColor = configuration?.styles?.nav_background_color;
 

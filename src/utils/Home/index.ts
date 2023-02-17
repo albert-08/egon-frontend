@@ -13,6 +13,7 @@ export const getSpaces = (params: any) => {
 
 export const getLogo = async (db: any) => {
   try {
+    console.log(db);
     const url = 'http://127.0.0.1:4000/clients/logo/';
     const response = await fetch(url, {
       method: 'POST',
