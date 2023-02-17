@@ -17,27 +17,35 @@ const HomePage: React.FC = () => {
   const params: any = useParams();
   
   const getSpaces = () => {
-    const spacesData: any = localStorage.getItem('spaces');
-    const spaces = JSON.parse(spacesData);
-    const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
-    setDatabase(database);
+    try {
+      const spacesData: any = localStorage.getItem('spaces');
+      const spaces = JSON.parse(spacesData);
+      const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
+      setDatabase(database);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const getClientData = async (db: any) => {
-    const url = 'http://127.0.0.1:4000/clients/logo/';
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        bdname: db.bdname,
-        csiid: db.csiid
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-    const data = await response.json();
-    setLogo(data);
-    // setSlides(data.slides.split(', '));
+    try {
+      const url = 'http://127.0.0.1:4000/clients/logo/';
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          bdname: db.bdname,
+          csiid: db.csiid
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      const data = await response.json();
+      setLogo(data);
+      // setSlides(data.slides.split(', '));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const getConfiguration = async (db: any) => {
@@ -56,7 +64,7 @@ const HomePage: React.FC = () => {
       const config = await response.json();
       setConfiguration(config);
     } catch (error) {
-      alert("Error en el nombre del espacio, verifique con atención a clientes");
+      console.log(error);
     }
   };
 
@@ -76,7 +84,7 @@ const HomePage: React.FC = () => {
       const data = await response.json();
       setInfo(data);
     } catch (error) {
-      alert("Error en el nombre del espacio, verifique con atención a clientes");
+      console.log(error);
     }
   };
 
@@ -94,7 +102,7 @@ const HomePage: React.FC = () => {
   
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
   const navBackgroundColor = configuration?.styles?.nav_background_color;
-  
+
   const el: HTMLIonContentElement | null = document.querySelector('ion-content');
   el?.style.setProperty('--background', bodyBackgroundColor);
   
