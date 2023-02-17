@@ -8,6 +8,7 @@ import { Space } from '../models/space.model';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HomeContainer from '../containers/HomeContainer';
+import { getConfiguration, getInfo, getLogo, getSpaces } from '../utils/Home';
 
 const HomePage: React.FC = () => {
   const [database, setDatabase] = useState<any>({});
@@ -16,88 +17,20 @@ const HomePage: React.FC = () => {
   const [logo, setLogo] = useState<any>({});
   const params: any = useParams();
   
-  const getSpaces = () => {
-    try {
-      const spacesData: any = localStorage.getItem('spaces');
-      const spaces = JSON.parse(spacesData);
-      const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
-      setDatabase(database);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const getClientData = async (db: any) => {
-    try {
-      const url = 'http://127.0.0.1:4000/clients/logo/';
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          bdname: db.bdname,
-          csiid: db.csiid
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      const data = await response.json();
-      setLogo(data);
-      // setSlides(data.slides.split(', '));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const getConfiguration = async (db: any) => {
-    const url = 'http://127.0.0.1:4000/clients/configuration';
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({ 
-          bdname: db.bdname,
-          csiid: db.csiid 
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      const config = await response.json();
-      setConfiguration(config);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getInfo = async (db: any) => {
-    const url = 'http://127.0.0.1:4000/clients/info';
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({ 
-          bdname: db.bdname,
-          csiid: db.csiid 
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      const data = await response.json();
-      setInfo(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     console.log('First useEffect');
-    getSpaces();
+    const db = getSpaces(params);
+    setDatabase(db);
   }, [params]);
 
   useEffect(() => {
     console.log('Second useEffect');
-    getClientData(database);
-    getConfiguration(database);
-    getInfo(database);
+    const lg = getLogo(database);
+    setLogo(lg);
+    const config = getConfiguration(database);
+    setConfiguration(config);
+    const inf = getInfo(database);
+    setInfo(inf);
   }, [database]);
   
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
