@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   const [client, setClient] = useState<any>({});
   const [logo, setLogo] = useState<any>({});
   const params: any = useParams();
-  const [info, setInfo] = useState<any>({});
+  const [configuration, setConfiguration] = useState<any>({});
   
   const getClientData = async (db: any) => {
     const url = 'http://127.0.0.1:4000/clients/logo/';
@@ -32,21 +32,21 @@ const HomePage: React.FC = () => {
     // setSlides(data.slides.split(', '));
   }
 
-  const getInfo = async (db: any) => {
-    const url = 'http://127.0.0.1:4000/clients/info';
+  const getConfiguration = async (db: any) => {
+    const url = 'http://127.0.0.1:4000/clients/configuration';
     try {
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify({ 
-          bdname: "SanGilClubs",
-          csiid: 51 
+          bdname: db.bdname,
+          csiid: db.csiid 
         }),
         headers: {
           'Content-Type': 'application/json',
         }
       });
-      const info = await response.json();
-      setInfo(info);
+      const config = await response.json();
+      setConfiguration(config);
     } catch (error) {
       alert("Error en el nombre del espacio, verifique con atención a clientes");
     }
@@ -58,10 +58,10 @@ const HomePage: React.FC = () => {
     setClient(spaces);
     const database = spaces.find((space: Space) => space.bdalias === params.bdalias);
     getClientData(database);
-    getInfo(database);
+    getConfiguration(database);
   }, [params]);
 
-  const { body_background_color, nav_background_color } = info.styles;
+  const { body_background_color, nav_background_color } = configuration.styles;
   const el: HTMLIonContentElement | null = document.querySelector('ion-content');
   el?.style.setProperty('--background', body_background_color);
   
