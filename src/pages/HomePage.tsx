@@ -81,21 +81,27 @@ const HomePage: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log('First useEffect');
     getSpaces();
   }, [params]);
 
-  getClientData(database);
-  getConfiguration(database);
-  getInfo(database);
-
-  const { body_background_color, nav_background_color } = configuration.styles;
+  useEffect(() => {
+    console.log('Second useEffect');
+    getClientData(database);
+    getConfiguration(database);
+    getInfo(database);
+  }, [database]);
+  
+  const bodyBackgroundColor = configuration?.styles?.body_background_color;
+  const navBackgroundColor = configuration?.styles?.nav_background_color;
+  
   const el: HTMLIonContentElement | null = document.querySelector('ion-content');
-  el?.style.setProperty('--background', body_background_color);
+  el?.style.setProperty('--background', bodyBackgroundColor);
   
   return (
     <>
       <IonPage>
-        <Header logo={logo} background={nav_background_color}/> 
+        <Header logo={logo} background={navBackgroundColor}/> 
         <IonContent>
           <HomeContainer logo={logo}/>
         </IonContent>
