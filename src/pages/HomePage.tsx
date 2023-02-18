@@ -47,7 +47,11 @@ const HomePage: React.FC = () => {
       <IonPage>
         <Header logo={logo} background={navBackgroundColor} /> 
         <IonContent>
-          <HomeContainer logo={logo} description={info.ppodescripcion}/>
+          <HomeContainer
+            logo={logo}
+            description={info.ppodescripcion}
+            slides={configuration?.gen_config?.carrusel}
+          />
         </IonContent>
         <Footer background={navBackgroundColor} />
       </IonPage>
