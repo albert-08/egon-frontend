@@ -39,7 +39,7 @@ const MainPage: React.FC = (): any => {
 
   return (
     <IonPage>
-      <Header logo={{logoURL: ''}} background='000000'/>
+      <Header logo={{logoURL: ''}} background='#000000'/>
         <IonContent>
           <>
             {
@@ -54,7 +54,7 @@ const MainPage: React.FC = (): any => {
           </>
           <MainContainer />
         </IonContent>
-      <Footer />
+      <Footer background='#000000'/>
     </IonPage>
   );
 };

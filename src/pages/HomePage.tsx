@@ -45,11 +45,11 @@ const HomePage: React.FC = () => {
   return (
     <>
       <IonPage>
-        <Header logo={logo} background={navBackgroundColor}/> 
+        <Header logo={logo} background={navBackgroundColor} /> 
         <IonContent>
-          <HomeContainer logo={logo}/>
+          <HomeContainer logo={logo} description={info.ppodescripcion}/>
         </IonContent>
-        <Footer />
+        <Footer background={navBackgroundColor} />
       </IonPage>
     </>
   )

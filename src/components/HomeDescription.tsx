@@ -3,17 +3,17 @@ import { Client } from "../models/client.model";
 import { Space } from "../models/space.model";
 
 interface ContainerProps {
-  client: Space
+  description: string
 }
 
-const HomeDescription: React.FC<ContainerProps> = ({ client }) => {
+const HomeDescription: React.FC<ContainerProps> = ({ description }) => {
   const [t, i18n] = useTranslation("translation");
 
   return (
     <div className='description'>
-      <h1>Bienvenido(a) a {client.bdalias}</h1>
+      <div dangerouslySetInnerHTML={{__html: description}} />
       {
-        client?.bdalias?.localeCompare('Misión Concá') === 0
+        /* client?.bdalias?.localeCompare('Misión Concá') === 0
           ? <>
               <h2>
                 Si es residente, podrá crear su usuario y contraseña y solicitar ligarlo al predio o los predios correspondientes
@@ -21,7 +21,7 @@ const HomeDescription: React.FC<ContainerProps> = ({ client }) => {
               <h2>Consejo Directivo y Administración</h2>
               <h4>No olvide instalar el App Móvil en su teléfono inteligente.</h4>
             </>
-          : <></>
+          : <></> */
       }
       <p>{t("main.powered")} Egon Solutions LLC <a href="https://www.egonsolutions.com">www.egonsolutions.com</a></p>
     </div>
