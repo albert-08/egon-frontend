@@ -3,6 +3,7 @@ import { trashOutline } from 'ionicons/icons';
 import { useContext, useEffect, useState } from 'react';
 import ClientContext from '../context/Client/ClientContext';
 import { Space } from '../models/space.model';
+import { BASE_API_URL } from '../utils/constants';
 
 interface ContainerProps { 
   space: Space
@@ -13,7 +14,7 @@ const DeleteSpaceItem: React.FC<ContainerProps> = ({space}) => {
   const [logo, setLogo] = useState<any>({});
     
   const getClientData = async () => {
-    const url = 'http://127.0.0.1:4000/clients/logo/';
+    const url = `${BASE_API_URL}/logo`;
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({ 

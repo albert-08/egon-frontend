@@ -11,7 +11,7 @@ const HomeSlides: React.FC<ContainerProps> = ({slides}) => {
     autoplay: true
   }
   
-  if ((slides.localeCompare('t') === 0)) {
+  if ((slides?.localeCompare('t') === 0)) {
     return (
       <IonSlides
         options={slideOpts}

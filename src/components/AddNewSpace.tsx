@@ -2,6 +2,7 @@ import { IonButton, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import { useContext, useState } from 'react';
 import ClientContext from '../context/Client/ClientContext';
 import MainContext from '../context/Main/MainContext';
+import { BASE_API_URL } from '../utils/constants';
 import './AddNewSpace.css';
 
 interface ContainerProps {}
@@ -11,7 +12,7 @@ const AddNewSpace: React.FC<ContainerProps> = () => {
   const { getMain } = useContext(MainContext);
   const [bdalias, setBDAlias] = useState<string>('');
 
-  const url = 'http://127.0.0.1:4000/clients/';
+  const url = BASE_API_URL;
 
   const getData = async () => {
     try {

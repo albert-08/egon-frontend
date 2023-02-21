@@ -1,4 +1,5 @@
 import { Space } from "../../models/space.model";
+import { BASE_API_URL } from "../constants";
 
 export const getSpaces = (params: any) => {
   try {
@@ -14,7 +15,7 @@ export const getSpaces = (params: any) => {
 export const getLogo = async (db: any) => {
   try {
     console.log(db);
-    const url = 'http://127.0.0.1:4000/clients/logo/';
+    const url = `${BASE_API_URL}/logo`;
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -34,7 +35,7 @@ export const getLogo = async (db: any) => {
 }
 
 export const getConfiguration = async (db: any) => {
-  const url = 'http://127.0.0.1:4000/clients/configuration';
+  const url = `${BASE_API_URL}/configuration`;
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -54,7 +55,7 @@ export const getConfiguration = async (db: any) => {
 };
 
 export const getInfo = async (db: any) => {
-  const url = 'http://127.0.0.1:4000/clients/info';
+  const url = `${BASE_API_URL}/info`;
   try {
     const response = await fetch(url, {
       method: 'POST',
