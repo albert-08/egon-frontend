@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../../utils/constants";
-import { getClientData } from "../../utils/Home";
+import { getClientData, getSpaces } from "../../utils/Home";
 
-export const useGetClientData = ({ db, path}: any) => {
+export const useGetClientData = ({ params, path}: any) => {
   const [data, setData] = useState<any>({});
 
   const url = `${BASE_API_URL}/${path}`;
@@ -12,8 +12,9 @@ export const useGetClientData = ({ db, path}: any) => {
   }
 
   useEffect(() => {
+    const db = getSpaces(params)
     getData(db);
-  }, [db]);
+  }, [params]);
 
   return data;
 }

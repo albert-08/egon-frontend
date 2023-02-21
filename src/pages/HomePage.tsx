@@ -5,16 +5,16 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HomeContainer from '../containers/HomeContainer';
-import { useGetDataBase } from '../hooks/home/useGetDataBase';
 import { useGetClientData } from '../hooks/home/useGetClientData';
+import { getSpaces } from '../utils/Home';
+import { useState } from 'react';
 
 const HomePage: React.FC = () => {
   const params: any = useParams();
-
-  const { dataBase } = useGetDataBase(params);
-  const configuration = useGetClientData({ db: dataBase, path: 'configuration'});
-  const info = useGetClientData({ db: dataBase, path: 'info'});
-  const logo = useGetClientData({ db: dataBase, path: 'logo'});
+  
+  const configuration = useGetClientData({ params: params, path: 'configuration'});
+  const info = useGetClientData({ params: params, path: 'info'});
+  const logo = useGetClientData({ params: params, path: 'logo'});
 
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
   const navBackgroundColor = configuration?.styles?.nav_background_color;
