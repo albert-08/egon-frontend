@@ -39,7 +39,7 @@ const MainPage: React.FC = (): any => {
 
   return (
     <IonPage>
-      <Header logo={{logoURL: ''}} background='#000000'/>
+      <Header logo={{logoURL: ''}} background='#0000FF'/>
         <IonContent>
           <>
             {

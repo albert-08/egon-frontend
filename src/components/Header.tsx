@@ -1,5 +1,5 @@
 import { IonButton, IonButtons, IonHeader, IonToolbar } from '@ionic/react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MainContext from '../context/Main/MainContext';
 import { Client } from '../models/client.model';
@@ -11,8 +11,14 @@ interface ContainerProps {
 }
 
 const Header: React.FC<ContainerProps> = ({ logo, background }) => {
-  let history = useHistory();
   const { menu, getMenu, hideMenu } = useContext(MainContext);
+  const [backgroundColor, setBackgroundColor] = useState<any>();
+
+  useEffect(() => {
+    setBackgroundColor(background);
+  }, [background])
+
+  let history = useHistory();
 
   const toMain = () => {
     history.push("/EgonPortal");
@@ -27,7 +33,7 @@ const Header: React.FC<ContainerProps> = ({ logo, background }) => {
   }
 
   const el: HTMLIonToolbarElement | null = document.querySelector('ion-toolbar');
-  el?.style.setProperty('--background', background);
+  el?.style.setProperty('--background', backgroundColor);
 
   return (
     <IonHeader>
