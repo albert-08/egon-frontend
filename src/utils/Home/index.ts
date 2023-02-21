@@ -1,5 +1,22 @@
 import { Space } from "../../models/space.model";
-import { BASE_API_URL } from "../constants";
+
+const getData = async (url: string, db: any) => {
+  if (Object.entries(db).length === 0) return {}
+
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      bdname: db.bdname,
+      csiid: db.csiid
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+
+  const data = await response.json();
+  return data;
+}
 
 export const getSpaces = (params: any) => {
   try {
@@ -12,64 +29,12 @@ export const getSpaces = (params: any) => {
   }
 }
 
-export const getLogo = async (db: any) => {
+export const getClientData = async (url: string, db: any) => {
   try {
-    console.log(db);
-    const url = `${BASE_API_URL}/logo`;
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        bdname: db.bdname,
-        csiid: db.csiid
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-    const logo = await response.json();
-    return logo;
+    const data = await getData(url, db);
+    return data;
     // setSlides(data.slides.split(', '));
   } catch (error) {
     console.log(error);
   }
 }
-
-export const getConfiguration = async (db: any) => {
-  const url = `${BASE_API_URL}/configuration`;
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({ 
-        bdname: db.bdname,
-        csiid: db.csiid 
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-    const config = await response.json();
-    return config;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getInfo = async (db: any) => {
-  const url = `${BASE_API_URL}/info`;
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({ 
-        bdname: db.bdname,
-        csiid: db.csiid 
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    });
-    const info = await response.json();
-    return info;
-  } catch (error) {
-    console.log(error);
-  }
-};

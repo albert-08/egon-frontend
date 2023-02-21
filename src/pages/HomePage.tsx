@@ -6,17 +6,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HomeContainer from '../containers/HomeContainer';
 import { useGetDataBase } from '../hooks/home/useGetDataBase';
-import { useGetConfiguration } from '../hooks/home/useGetConfiguration';
-import { useGetInfo } from '../hooks/home/useGetInfo';
-import { useGetLogo } from '../hooks/home/useGetLogo';
+import { useGetClientData } from '../hooks/home/useGetClientData';
 
 const HomePage: React.FC = () => {
   const params: any = useParams();
 
   const { dataBase } = useGetDataBase(params);
-  const { configuration } = useGetConfiguration(dataBase);
-  const { info } = useGetInfo(dataBase);
-  const { logo } = useGetLogo(dataBase);
+  const configuration = useGetClientData({ db: dataBase, path: 'configuration'});
+  const info = useGetClientData({ db: dataBase, path: 'info'});
+  const logo = useGetClientData({ db: dataBase, path: 'logo'});
 
   const bodyBackgroundColor = configuration?.styles?.body_background_color;
   const navBackgroundColor = configuration?.styles?.nav_background_color;
@@ -31,7 +29,7 @@ const HomePage: React.FC = () => {
         <IonContent>
           <HomeContainer
             logo={logo}
-            description={info.ppodescripcion}
+            description={info?.ppodescripcion}
             slides={configuration?.gen_config?.carrusel}
           />
         </IonContent>
